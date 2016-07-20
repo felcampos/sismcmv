@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'sismcmv.suporte@cidades.gov.br', 'name' => 'Supporte SISMCMV'],
 
     /*
     |--------------------------------------------------------------------------
