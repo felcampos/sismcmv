@@ -1,66 +1,52 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Entrar</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
+@section('conteudo')
+<div class="login-img3-body">
+    <div class="container">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail</label>
+      <form class="login-form" role="form" method="POST" action="{{ url('/login') }}">  
+        {{ csrf_field() }}      
+        <div class="login-wrap">
+            <p class="login-img"><i class="icon_lock_alt"></i></p>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Senha</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Lembrar De Mim
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i> Entrar
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Esqueceu Sua Senha?</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="help-parent">
+            @if ($errors->has('email'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
             </div>
+            <div class="input-group form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+              <span class="input-group-addon"><i class="icon_mail"></i></span>
+              <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" autofocus>       
+            </div>
+
+             
+            @if ($errors->has('password'))
+            <div class="help-parent">
+                <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+            </div>
+            @endif
+            <div class="input-group form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <input id="password" type="password" class="form-control" name="password" placeholder="Senha">
+            </div>
+
+             
+
+            <label class="checkbox">
+                <input type="checkbox" name="remember"> Lembrar De Mim
+                <span class="pull-right"> <a href="{{ url('/password/reset') }}"> Esqueceu Sua Senha?</a></span>
+            </label>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
+            <button class="btn btn-info btn-lg btn-block" type="submit">Solicitar Acesso</button>
         </div>
+      </form>
+
     </div>
 </div>
+    
+
 @endsection

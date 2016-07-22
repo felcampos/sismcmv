@@ -11,8 +11,10 @@
 |
 */
 
+
 Route::get('/', 'LoginController@index');
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/resumo', 'ResumoController@index');

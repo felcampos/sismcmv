@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+use App\Http\Requests;
+
+class ResumoController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,6 +25,6 @@ class LoginController extends Controller
      */
     public function index()
     {
-       return view('welcome');   
+        return view('paginas.resumo_executivo');
     }
 }
