@@ -3,24 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/imagens/favicon_mcmv.ico" type="image/x-icon">
-    <link rel="icon" href="/imagens/favicon_mcmv.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ URL::asset('imagens/favicon_mcmv.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ URL::asset('imagens/favicon_mcmv.ico') }}" type="image/x-icon">
 
     <title>SISCASA - Login</title>
 
     <!-- Bootstrap CSS -->    
-    <link href="/_css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ URL::asset('/_css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- bootstrap theme -->
-    <link href="/_css/bootstrap-theme.css" rel="stylesheet">
+    <link href="{{ URL::asset('_css/bootstrap-theme.css') }}" rel="stylesheet">
 
     <!-- font icon -->
     <link href='https://fonts.googleapis.com/css?family=Kanit:400,800' rel='stylesheet' type='text/css'>
-    <link href="/_css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="/_css/font-awesome.css" rel="stylesheet" />
+    <link href="{{ URL::asset('_css/elegant-icons-style.css')}}" rel="stylesheet" />
+    <link href="{{ URL::asset('_css/font-awesome.css')}}" rel="stylesheet" />
 
     <!-- Custom styles -->
-    <link href="/_css/style.css" rel="stylesheet">
-    <link href="/_css/style-responsive.css" rel="stylesheet" />
+    <link href="{{ URL::asset('_css/style.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('_css/style-responsive.css') }}" rel="stylesheet" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
@@ -30,7 +30,7 @@
 </head>
 <body>
 
-    <img id="logo" src="/imagens/McmvLogoPequena.png" alt="Logo SisCasa">
+    <img id="logo" src="{{ URL::asset('imagens/McmvLogoPequena.png') }}" alt="Logo SisCasa">
     <h1 id="titulo">SisCasa</h1>
     <p id="subtitulo">
         Sistema de Monitoramento do<br>Minha&nbsp;Casa&nbsp;Minha&nbsp;Vida

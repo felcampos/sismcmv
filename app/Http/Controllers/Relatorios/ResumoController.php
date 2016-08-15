@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Relatorios;
 
 use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ResumoController extends Controller
 {
@@ -25,6 +25,6 @@ class ResumoController extends Controller
      */
     public function index()
     {
-        return view('paginas.resumo_executivo');
+        return view('relatorios.resumo_executivo');
     }
 }

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => 'local',
+    'default' => 'custom',
 
     /*
     |--------------------------------------------------------------------------
@@ -46,6 +46,11 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+        ],
+        'custom' => [
+            'driver' => 'local',
+            'root' => 'imagens',
+            'visibility' => 'public',
         ],
 
         'public' => [

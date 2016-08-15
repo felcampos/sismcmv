@@ -34,6 +34,25 @@
               <span class="input-group-addon"><i class="icon_mail"></i></span>
               <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">       
             </div>
+
+            <div class="help-parent">
+            @if ($errors->has('tipo_usuario'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('tipo_usuario') }}</strong>
+                </span>
+            @endif
+            </div>
+            <div class="input-group form-group{{ $errors->has('tipo_usuario') ? ' has-error' : '' }}">
+              <span class="input-group-addon"><i class="icon_profile"></i></span>
+              <select name="tipo_usuario" id="tipo_usuario" class="form-control">
+                <option value="" selected>Escolha um tipo de usuário:</option>
+                  @foreach($tipo_usuarios as $tipo)
+                    <option value="{{ $tipo->id}}">{{ $tipo->txt_tipo_usuario }}</option>
+                  @endforeach
+              </select>       
+            </div>
+
+
              
             @if ($errors->has('password'))
             <div class="help-parent">

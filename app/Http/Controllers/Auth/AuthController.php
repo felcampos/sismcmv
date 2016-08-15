@@ -52,6 +52,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'tipo_usuario' => 'required'
         ]);
     }
 
@@ -67,6 +68,10 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'tipo_usuario_id' => $data['tipo_usuario'],
+            'txt_nome_foto' => "anonimo.jpg",
+            'txt_caminho_foto' => "imagens/perfil/anonimo.jpg",
+            'txt_caminho_avatar' => "imagens/perfil/avatar-anonimo.jpg"
         ]);
     }
 }
