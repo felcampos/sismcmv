@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('conteudo')
-
+ 
 	<!-- cabeçalho da pagina -->
 	<div class="row">
 		<div class="col-lg-12">

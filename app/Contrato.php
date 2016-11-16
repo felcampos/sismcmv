@@ -26,4 +26,10 @@ class Contrato extends Model
     {
        return $this->hasMany(Beneficiario::class); //possui muitos
     } 
+
+    // beneficiarios metodo.
+    public function pagamentos()
+    {
+       return $this->hasMany(Pagamento::class); //possui muitos
+    } 
 }

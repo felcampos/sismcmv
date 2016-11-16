@@ -20,5 +20,23 @@ class Beneficiario extends Model
     public function municipio()
     {
        return $this->belongsTo(Municipio::class);// pertence a
-    } 
+    }
+
+    // Tabela genro possui muitos beneficiários.
+    public function genero()
+    {
+       return $this->belongsTo(Genero::class);// pertence a
+    }
+
+    // Tabela genro possui muitos beneficiários.
+    public function estado_civil()
+    {
+       return $this->belongsTo(EstadoCivil::class);// pertence a
+    }
+
+    // Beneficiario pertence a um contrato.
+    public function pagamentos()
+    {
+       return $this->hasMany(Pagamento::class);// pertence a
+    }
 }

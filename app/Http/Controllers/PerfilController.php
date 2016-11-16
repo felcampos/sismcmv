@@ -84,9 +84,7 @@ class PerfilController extends Controller
             Storage::delete("perfil/$user->txt_nome_foto");
             Storage::delete("perfil/avatar-" . $user->txt_nome_foto);
             // Storage::delete($user->txt_caminho_foto);
-            // Storage::delete($user->txt_caminho_avatar);
-
-            
+            // Storage::delete($user->txt_caminho_avatar);            
         }
 
         return $user;

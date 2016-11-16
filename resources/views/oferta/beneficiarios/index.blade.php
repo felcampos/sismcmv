@@ -56,17 +56,14 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
 
                   <div class="bio-row">
                       <p><span>Sexo </span>: 
-                      @if($beneficiario->genero_beneficiario_id == 1)
-                        Feminino
-                      @else
-                        Masculino
-                      @endif
+                      {{$beneficiario->genero->txt_genero}}
+
                       </p>
                   </div>
 
                   <div class="bio-row">
                       <p><span>Estado Civil </span>: 
-                     {{ $beneficiario->estado_civil_beneficiario_id}}
+                     {{ $beneficiario->estado_civil->txt_estado_civil}}
                       </p>
                   </div>
 
@@ -80,6 +77,12 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
                       </p>
                   </div>
 
+                  @if($beneficiario->bln_deficiente)
+                  <div class="bio-row">
+                      <p><span>Tipo Deficiência</span>: {{  $beneficiario->txt_tipo_deficiencia  }}</p>
+                  </div>
+                  @endif
+
                   <div class="bio-row">
                       <p><span>Idoso(a) </span>: 
                       @if($beneficiario->bln_idoso)
@@ -90,7 +93,7 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
                       </p>
                   </div>
 
-                  @if($beneficiario->genero_beneficiario_id == 1)
+                  @if($beneficiario->genero_id == 1)
                   <div class="bio-row">
                       <p><span>Chefe de Família </span>: 
                       @if($beneficiario->bln_mulher_chefe)
@@ -101,7 +104,8 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
                       </p>
                   </div>
                   @endif
-
+                  
+                  @if($beneficiario->municipio)
                   <div class="bio-row">
                       <p><span>Estado </span>: {{  $beneficiario->municipio->uf->ds_uf  }}</p>
                   </div> 
@@ -109,6 +113,13 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
                   <div class="bio-row">
                       <p><span>Município </span>: {{  $beneficiario->municipio->ds_municipio  }}</p>
                   </div> 
+                  @endif
+                  
+                  @if($beneficiario->estado_civil->id == 6)
+                  <div class="bio-row">
+                      <p><span>Renda Familiar Bruta R$</span>: {{  $beneficiario->vlr_renda_familiar_bruta  }}</p>
+                  </div>
+                  @endif
 
 
 
@@ -142,7 +153,30 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
                       <span>% de execução </span>: 
                       {{  number_format($beneficiario->contrato->vlr_percentual_obra, 2)  }}
                       </p>
-                  </div> 
+                  </div>
+
+                  <div class="bio-row">
+                      <p>
+                      <span>Titular </span>: 
+                      @if($beneficiario->bln_ativo)
+                        Sim
+                      @else
+                        Não
+                      @endif
+                      </p>
+                  </div>
+                  
+
+                  @if(! $beneficiario->bln_ativo)
+                  <div class="bio-row">
+                      <p><span>Nome do Titular </span>: 
+                      @foreach($beneficiario->contrato->beneficiarios as $bene)
+                        @if($bene->bln_ativo)
+                          <a href='{{ url("/oferta/beneficiario/$bene->id") }}'>{{ucwords(strtolower(  $bene->txt_nome_beneficiario ))}}</a>
+                        @endif
+                      @endforeach</p>
+                  </div>
+                  @endif
 
               </div>
           </div>
@@ -154,14 +188,17 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
           <div class="panel-body bio-graph-info">
               <h1>Dados Residenciais</h1>
               <div class="row">
-
+                  
+                  @if($beneficiario->municipio)
                   <div class="bio-row">
                       <p><span>Estado </span>: {{  $beneficiario->municipio->uf->ds_uf  }}</p>
                   </div> 
-
+                  
+                  
                   <div class="bio-row">
                       <p><span>Município </span>: {{  $beneficiario->municipio->ds_municipio  }}</p>
-                  </div> 
+                  </div>
+                  @endif
 
                   <div class="bio-row">
                       <p><span>Endereço Atual </span>: {{  $beneficiario->txt_endereço_atual  }}</p>
@@ -182,6 +219,7 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
       </div>
 
       <!-- Dados Familiares -->
+      @if($beneficiario->estado_civil->id != 6)
       <div id="profile" class="tab-pane">
         <section class="panel">
           <div class="panel-body bio-graph-info">
@@ -189,7 +227,7 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
               <div class="row">
 
                   <div class="bio-row">
-                      <p><span>Nome Conjuge </span>: {{  $beneficiario->txt_nome_conjuge  }}</p>
+                      <p><span>Nome Conjuge </span>: {{  ucwords(strtolower($beneficiario->txt_nome_conjuge))  }}</p>
                   </div> 
 
                   <div class="bio-row">
@@ -207,7 +245,7 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
                       <p><span>Sexo Conjuge</span>: 
                       @if($beneficiario->genero_conjuge_id == 1)
                         Feminino
-                      @else
+                      @elseif ($beneficiario->genero_conjuge_id == 2)
                         Masculino
                       @endif
                       </p>
@@ -217,9 +255,26 @@ $protocoloID = $beneficiario->contrato->protocolo->id;
                       <p><span>Renda Familiar Bruta R$</span>: {{  $beneficiario->vlr_renda_familiar_bruta  }}</p>
                   </div>
 
+                  <div class="bio-row">
+                      <p>
+                      <span>Familiar Deficiente</span>:  @if($beneficiario->bln_deficiente_familia)
+                        Sim
+                      @else
+                        Não
+                      @endif
+                      </p>
+                  </div>
+
+                  @if($beneficiario->bln_deficiente_familia)
+                  <div class="bio-row">
+                      <p><span>Tipo Deficiência</span>: {{  $beneficiario->txt_tipo_deficiencia  }}</p>
+                  </div>
+                  @endif
+
               </div>
           </div>
       </div>
+      @endif
 
 	
 	

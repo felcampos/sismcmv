@@ -24,9 +24,10 @@ class BeneficiarioController extends Controller
     // index Contrato $contrato metodo.
     public function index(Beneficiario $beneficiario)
     {
-       $beneficiario->load('contrato.protocolo', 'municipio.uf');
+       $beneficiario->load('contrato.protocolo', 'municipio.uf', 'contrato.beneficiarios', 'genero', 'estado_civil');
 
        return view('oferta.beneficiarios.index', 
        	compact('beneficiario') );
     } 
+
 }
